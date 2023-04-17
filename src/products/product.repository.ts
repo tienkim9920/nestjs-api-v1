@@ -1,6 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { IProductRepository } from "src/interfaces/IProductRepository.interface";
 import { Product } from "../models/product.model";
+import { ProductDto } from 'src/dto/product.dto';
 
+@Injectable()
 export class ProductRepository implements IProductRepository {
     private products: Product[] = [
         { id: 1, productName: 'Chang', category_id: 1, price: '18'},
@@ -20,15 +23,25 @@ export class ProductRepository implements IProductRepository {
         return product;
     }
 
-    detail(id: number, data: Partial<Product>): void {
-        
+    detail(id: number): Product {
+        const index: number = this.products.findIndex(item => +item?.id === +id);
+        return this.products[index];
     }
 
-    update(id: number, data: Partial<Product>): void {
-        
+    update(id: number, data: Partial<ProductDto>): Product {
+        const index: number = this.products.findIndex(item => +item?.id === +id);
+        this.products[index].productName = data.productName;
+        this.products[index].price = data.price;
+        this.products[index].category_id = data.category_id;
+        return this.products[index];
     }
 
-    delete(id: number): void {
-        
+    delete(id: number): boolean {
+        const index: number = this.products.findIndex(item => +item?.id === +id);
+        if (index !== 1) {
+            this.products.splice(index, 1);
+            return true;
+        }
+        return false;
     }
 }

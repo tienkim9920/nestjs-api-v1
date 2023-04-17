@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Res, Req, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Res, Body, Param } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Response } from 'express';
 import { ResponseData } from 'src/Services/ReponseData.service';
@@ -23,6 +23,33 @@ export class ProductController {
   createProduct(@Body() product: ProductDto, @Res() res: Response): Response<Product> {
     try {
       return res.json(new ResponseData(this.productService.createProduct(product), ServerStatus.OK, ServerMessage.OK));
+    } catch (error) {
+      return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
+    }
+  }
+
+  @Get('/:id')
+  detailProduct(@Param('id') id: number, @Res() res: Response): Response<Product> {
+    try {
+      return res.json(new ResponseData(this.productService.detailProduct(id), ServerStatus.OK, ServerMessage.OK));
+    } catch (error) {
+      return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
+    }
+  }
+
+  @Put('/:id')
+  updateProduct(@Param('id') id: number, @Body() product: ProductDto, @Res() res: Response): Response<Product> {
+    try {
+      return res.json(new ResponseData(this.productService.updateProduct(id, product), ServerStatus.OK, ServerMessage.OK));
+    } catch (error) {
+      return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
+    }
+  }
+
+  @Delete('/:id')
+  deleteProduct(@Param('id') id: number, @Res() res: Response): Response<Product> {
+    try {
+      return res.json(new ResponseData(this.productService.deleteProduct(id), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
       return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
     }
