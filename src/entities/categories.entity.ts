@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
-import { ProductsEntity } from './products.entity';
+import { CarsEntity } from './cars.entity';
 
 @Entity()
 export class CategoriesEntity {
@@ -12,7 +12,7 @@ export class CategoriesEntity {
   @Column()
   description: string;
 
-  @OneToMany(() => ProductsEntity, products => products.category)
+  @OneToMany(() => CarsEntity, cars => cars.category)
   @JoinColumn()
-  products: ProductsEntity;
+  cars: CarsEntity;
 }

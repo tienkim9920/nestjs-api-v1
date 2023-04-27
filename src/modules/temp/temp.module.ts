@@ -1,0 +1,16 @@
+// import { Module } from '@nestjs/common';
+// import { ProductController } from './product.controller';
+// import { ProductService } from './product.service';
+// import { ProductRepository } from './product.repository';
+
+// @Module({
+//   controllers: [ProductController],
+//   providers: [
+//     ProductService,
+//     {
+//       provide: 'IProductRepository',
+//       useClass: ProductRepository
+//     }
+//   ],
+// })
+// export class ProductModule {}

@@ -2,9 +2,10 @@ import { Controller, Get, Post, Put, Delete, Res, Body, Param } from '@nestjs/co
 import { ProductService } from './product.service';
 import { Response } from 'express';
 import { ResponseData } from 'src/Services/ReponseData.service';
-import { ResponseType, ServerMessage, ServerStatus } from 'src/constant/type';
-import { Product } from '../models/product.model';
+import { ResponseType } from 'src/constant/type';
+import { Product } from '../../models/product.model';
 import { ProductDto } from 'src/dto/product.dto';
+import { ServerMessage, ServerStatus } from 'src/constant/enum';
 
 @Controller('products')
 export class ProductController {

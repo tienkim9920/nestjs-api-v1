@@ -8,8 +8,8 @@ import { ProductRepository } from './product.repository';
   providers: [
     ProductService,
     {
+      useClass: ProductRepository,
       provide: 'IProductRepository',
-      useClass: ProductRepository
     }
   ],
 })

@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 't
 import { CategoriesEntity } from './categories.entity';
 
 @Entity()
-export class ProductsEntity {
+export class CarsEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
