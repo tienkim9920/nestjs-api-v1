@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Res, Body, Param } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Response } from 'express';
-import { ResponseData } from 'src/Services/ReponseData.service';
+import { ResponseData } from 'src/services/response.service';
 import { ResponseType } from 'src/constant/type';
 import { Product } from '../../models/product.model';
 import { ProductDto } from 'src/dto/product.dto';

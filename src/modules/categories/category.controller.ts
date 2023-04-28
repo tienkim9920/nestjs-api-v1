@@ -1,23 +1,24 @@
 import { Controller, Get, Post, Put, Delete, Res, Body, Param } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { Response } from 'express';
-import { ResponseData } from 'src/Services/ReponseData.service';
+import { ResponseData } from 'src/services/response.service';
 import { ResponseType } from 'src/constant/type';
 import { Category } from '../../models/category.model';
 import { CategoryDto } from 'src/dto/category.dto';
+import { ServerMessage, ServerStatus } from 'src/constant/enum';
 
 @Controller('categories')
 export class CategoryController {
-//   constructor(private readonly productService: ProductService) {}
+  constructor(private readonly categoryService: CategoryService) {}
 
-//   @Get()
-//   list(@Res() res: Response): ResponseType<Product> {
-//     try {
-//       return res.json(new ResponseData(this.productService.getProducts(), ServerStatus.OK, ServerMessage.OK));
-//     } catch (error) {
-//       return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
-//     }
-//   }
+  @Get()
+  async list(@Res() res: Response): Promise<ResponseType<Category>> {
+    // try {
+      return res.json(new ResponseData(await this.categoryService.getAll(), ServerStatus.OK, ServerMessage.OK));
+    // } catch (error) {
+    //   return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
+    // }
+  }
 
 //   @Post()
 //   create(@Body() product: ProductDto, @Res() res: Response): Response<Product> {

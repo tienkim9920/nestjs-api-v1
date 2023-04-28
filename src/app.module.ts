@@ -7,6 +7,7 @@ import { DataSource } from 'typeorm';
 import { CarsEntity } from './entities/cars.entity';
 import { CategoriesEntity } from './entities/categories.entity';
 import { AccountsEntity } from './entities/accounts.entity';
+import { CategoryModule } from './modules/categories/category.module';
 
 @Module({
   imports: [
@@ -21,11 +22,13 @@ import { AccountsEntity } from './entities/accounts.entity';
       synchronize: true,
     }),
     ProductModule,
-    
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {
-  constructor(private dataSource: DataSource) {}
+  constructor(private dataSource: DataSource) {
+    
+  }
 }

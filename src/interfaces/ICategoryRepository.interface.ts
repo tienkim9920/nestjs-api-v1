@@ -1,6 +1,6 @@
 import { Category } from "src/models/category.model";
-import { AbstractRepository } from "./AbstractRepository.interface";
+import { AbstractPromise } from "./AbstractRepository.interface";
 
-export interface ICategoryRepository extends AbstractRepository<Category> {
+export interface ICategoryRepository extends AbstractPromise<Category> {
     
 }
