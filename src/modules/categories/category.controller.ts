@@ -13,21 +13,25 @@ export class CategoryController {
 
   @Get()
   async list(@Res() res: Response): Promise<ResponseType<Category>> {
-    // try {
+    try {
       return res.json(new ResponseData(await this.categoryService.getAll(), ServerStatus.OK, ServerMessage.OK));
-    // } catch (error) {
-    //   return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
-    // }
+    } catch (error) {
+      return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
+    }
+  }
+
+  @Get('/:id')
+  async detail(@Param('id') id: number, @Res() res: Response): Promise<Response<Category>> {
+    try {
+      return res.json(new ResponseData(await this.categoryService.detail(id), ServerStatus.OK, ServerMessage.OK));
+    } catch (error) {
+      return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
+    }
   }
 
 //   @Post()
 //   create(@Body() product: ProductDto, @Res() res: Response): Response<Product> {
 
-//   }
-
-//   @Get('/:id')
-//   detail(@Param('id') id: number, @Res() res: Response): Response<Product> {
-    
 //   }
 
 //   @Put('/:id')

@@ -12,4 +12,8 @@ export class CategoryService {
   async getAll(): Promise<Category[]> {
     return await this.categoryRepository.getAll();
   }
+
+  async detail(id: number): Promise<Category> {
+    return await this.categoryRepository.detail(id);
+  }
 }

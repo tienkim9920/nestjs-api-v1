@@ -8,8 +8,8 @@ export interface AbstractOrigin<D> {
 
 export interface AbstractPromise<D> {
   getAll(): Promise<D[]>;
+  detail(id: number): Promise<D>;
   // create(data: Partial<D>): Promise<D>;
-  // detail(id: number): Promise<D>;
   // update(id: number, data: Partial<D>): Promise<D>;
   // delete(id: number): Promise<boolean>;
 }
