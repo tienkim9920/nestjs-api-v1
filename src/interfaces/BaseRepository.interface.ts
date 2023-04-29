@@ -1,5 +1,5 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseEntity, FindOneOptions, FindOptionsWhere, Repository } from 'typeorm';
+import { BaseEntity, FindOptionsWhere, Repository } from 'typeorm';
 
 export class BaseRepository<T extends BaseEntity, R extends Repository<T>> {
 
@@ -10,7 +10,7 @@ export class BaseRepository<T extends BaseEntity, R extends Repository<T>> {
   }
 
   async detail(id: number): Promise<T> {
-    return this.repository.findOne({where: {id: id} as FindOptionsWhere<BaseEntity>, relations: ['cars']});
+    return this.repository.findOne({where: {id: id} as FindOptionsWhere<BaseEntity>});
   }
 
   // create(data: Partial<T>): Promise<T> {}
