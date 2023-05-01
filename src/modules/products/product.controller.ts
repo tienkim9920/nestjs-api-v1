@@ -14,7 +14,7 @@ export class ProductController {
   @Get()
   getProducts(@Res() res: Response): ResponseType<Product> {
     try {
-      return res.json(new ResponseData(this.productService.getProducts(), ServerStatus.OK, ServerMessage.OK));
+      return res.json(new ResponseData(this.productService.findAll(), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
       return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
     }
@@ -32,7 +32,7 @@ export class ProductController {
   @Get('/:id')
   detailProduct(@Param('id') id: number, @Res() res: Response): Response<Product> {
     try {
-      return res.json(new ResponseData(this.productService.detailProduct(id), ServerStatus.OK, ServerMessage.OK));
+      return res.json(new ResponseData(this.productService.findById(id), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
       return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
     }

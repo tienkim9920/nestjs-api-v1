@@ -14,7 +14,7 @@ export class CategoryController {
   @Get()
   async list(@Res() res: Response): Promise<ResponseType<Category>> {
     try {
-      return res.json(new ResponseData(await this.categoryService.getAll(), ServerStatus.OK, ServerMessage.OK));
+      return res.json(new ResponseData(await this.categoryService.findAll(), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
       return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
     }
@@ -23,21 +23,29 @@ export class CategoryController {
   @Get('/:id')
   async detail(@Param('id') id: number, @Res() res: Response): Promise<Response<Category>> {
     try {
-      return res.json(new ResponseData(await this.categoryService.detail(id), ServerStatus.OK, ServerMessage.OK));
+      return res.json(new ResponseData(await this.categoryService.findById(id), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
       return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
     }
   }
 
-//   @Post()
-//   create(@Body() product: ProductDto, @Res() res: Response): Response<Product> {
+  @Post()
+  async create(@Body() category: CategoryDto, @Res() res: Response): Promise<Response<Category>> {
+    try {
+      return res.json(new ResponseData(await this.categoryService.create(category), ServerStatus.OK, ServerMessage.OK));
+    } catch (error) {
+      return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
+    }
+  }
 
-//   }
-
-//   @Put('/:id')
-//   update(@Param('id') id: number, @Body() product: ProductDto, @Res() res: Response): Response<Product> {
-    
-//   }
+  @Put('/:id')
+  async update(@Param('id') id: number, @Body() category: CategoryDto, @Res() res: Response): Promise<Response<Category>> {
+    try {
+      return res.json(new ResponseData(await this.categoryService.update(id, category), ServerStatus.OK, ServerMessage.OK));
+    } catch (error) {
+      return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
+    }
+  }
 
 //   @Delete('/:id')
 //   delete(@Param('id') id: number, @Res() res: Response): Response<Product> {

@@ -8,16 +8,16 @@ export class ProductService {
 
     constructor(@Inject('IProductRepository') private readonly productRepository: IProductRepository) {}
 
-    getProducts(): Product[] {
-        return this.productRepository.getAll();
+    findAll(): Product[] {
+        return this.productRepository.findAll();
     }
 
     createProduct(product: ProductDto): Product {
         return this.productRepository.create(product);
     }
 
-    detailProduct(id: number): Product {
-        return this.productRepository.detail(id);
+    findById(id: number): Product {
+        return this.productRepository.findById(id);
     }
 
     updateProduct(id: number, product: ProductDto): Product {

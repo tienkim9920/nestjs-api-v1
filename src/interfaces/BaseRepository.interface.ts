@@ -1,21 +1,28 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseEntity, FindOptionsWhere, Repository } from 'typeorm';
 
-export class BaseRepository<T extends BaseEntity, R extends Repository<T>> {
+export abstract class BaseRepository<T extends BaseEntity, R extends Repository<T>> {
 
   constructor(@InjectRepository(Repository<T>) protected readonly repository: R) {}
 
-  async getAll(): Promise<T[]> {
+  async findAll(): Promise<T[]> {
     return this.repository.find();
   }
 
-  async detail(id: number): Promise<T> {
+  async findById(id: number): Promise<T> {
     return this.repository.findOne({where: {id: id} as FindOptionsWhere<BaseEntity>});
   }
 
-  // create(data: Partial<T>): Promise<T> {}
+  async create(data: T): Promise<T> {
+    return this.repository.save(data);
+  }
 
-  // update(id: number, data: Partial<T>): Promise<T> {}
+  async update(id: number, data: T): Promise<T> {
+    let result: T = await this.repository.findOne({where: {id: id} as FindOptionsWhere<BaseEntity>});
+    // result = {...data};
+    // await result.save();
+    return result;
+  }
 
   // delete(id: number): Promise<boolean> {}
 }

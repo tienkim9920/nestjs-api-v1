@@ -10,7 +10,7 @@ export class ProductRepository implements IProductRepository {
         { id: 2, productName: 'Chair', category_id: 1, price: '25'},
     ];
 
-    getAll(): Product[] {
+    findAll(): Product[] {
         return this.products;
     }
 
@@ -23,7 +23,7 @@ export class ProductRepository implements IProductRepository {
         return product;
     }
 
-    detail(id: number): Product {
+    findById(id: number): Product {
         const index: number = this.products.findIndex(item => +item?.id === +id);
         return this.products[index];
     }
