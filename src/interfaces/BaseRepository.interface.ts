@@ -1,5 +1,5 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseEntity, FindOptionsWhere, Repository } from 'typeorm';
+import { BaseEntity, DeepPartial, DeleteResult, FindOptionsWhere, ObjectLiteral, Repository } from 'typeorm';
 
 export abstract class BaseRepository<T extends BaseEntity, R extends Repository<T>> {
 
@@ -17,12 +17,13 @@ export abstract class BaseRepository<T extends BaseEntity, R extends Repository<
     return this.repository.save(data);
   }
 
-  async update(id: number, data: T): Promise<T> {
-    let result: T = await this.repository.findOne({where: {id: id} as FindOptionsWhere<BaseEntity>});
-    // result = {...data};
-    // await result.save();
-    return result;
+  async update(id: number, data: T extends DeepPartial<ObjectLiteral> ? ObjectLiteral : {}): Promise<T> {
+    await this.repository.update(id, data);
+    return this.findById(id);
   }
 
-  // delete(id: number): Promise<boolean> {}
+  async delete(id: number): Promise<boolean> {
+    const isFlag: DeleteResult = await this.repository.delete(id);
+    return isFlag.affected === 1;
+  }
 }

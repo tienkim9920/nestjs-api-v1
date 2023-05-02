@@ -11,5 +11,5 @@ export interface AbstractPromise<D> {
   findById(id: number): Promise<D>;
   create(data: Partial<D>): Promise<D>;
   update(id: number, data: Partial<D>): Promise<D>;
-  // delete(id: number): Promise<boolean>;
+  delete(id: number): Promise<boolean>;
 }

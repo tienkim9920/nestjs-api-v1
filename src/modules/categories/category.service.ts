@@ -1,5 +1,4 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { async } from 'rxjs';
 import { CategoryDto } from 'src/dto/category.dto';
 import { ICategoryRepository } from 'src/interfaces/ICategoryRepository.interface';
 import { Category } from 'src/models/category.model';
@@ -25,5 +24,9 @@ export class CategoryService {
 
   async update(id: number, category: CategoryDto): Promise<Category> {
     return await this.categoryRepository.update(id, category);
+  }
+
+  async delete(id: number): Promise<boolean> {
+    return await this.categoryRepository.delete(id);
   }
 }

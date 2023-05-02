@@ -8,6 +8,7 @@ import { CarsEntity } from './entities/cars.entity';
 import { CategoriesEntity } from './entities/categories.entity';
 import { AccountsEntity } from './entities/accounts.entity';
 import { CategoryModule } from './modules/categories/category.module';
+import { CarModule } from './modules/cars/car.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CategoryModule } from './modules/categories/category.module';
     }),
     ProductModule,
     CategoryModule,
+    CarModule,
   ],
   controllers: [AppController],
   providers: [AppService],

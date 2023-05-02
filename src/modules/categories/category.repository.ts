@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CategoriesEntity } from 'src/entities/categories.entity';
 import { BaseRepository } from 'src/interfaces/BaseRepository.interface';
 import { ICategoryRepository } from 'src/interfaces/ICategoryRepository.interface';
-import { Category } from 'src/models/category.model';
 import { Repository } from 'typeorm';
 
 @Injectable()

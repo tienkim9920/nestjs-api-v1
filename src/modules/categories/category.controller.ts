@@ -47,8 +47,17 @@ export class CategoryController {
     }
   }
 
-//   @Delete('/:id')
-//   delete(@Param('id') id: number, @Res() res: Response): Response<Product> {
-    
-//   }
+  @Delete('/:id')
+  async delete(@Param('id') id: number, @Res() res: Response): Promise<Response<boolean>> {
+    try {
+      const isFlag: boolean = await this.categoryService.delete(id);
+      if (isFlag) {
+        return res.json(new ResponseData(isFlag, ServerStatus.OK, ServerMessage.OK));
+      } else {
+        return res.json(new ResponseData(isFlag, ServerStatus.ERROR, ServerMessage.ERROR));
+      }
+    } catch (error) {
+      return res.json(new ResponseData(null, ServerStatus.ERROR, ServerMessage.ERROR));
+    }
+  }
 }

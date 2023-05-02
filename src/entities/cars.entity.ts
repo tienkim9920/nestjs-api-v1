@@ -12,6 +12,9 @@ export class CarsEntity extends BaseEntity {
   @Column()
   price: string;
 
+  @Column()
+  category_id: number;
+
   @ManyToOne(() => CategoriesEntity)
   @JoinColumn({ name: 'category_id', referencedColumnName: 'id' })
   category: CategoriesEntity;
