@@ -21,7 +21,7 @@ export class ProductController {
   }
 
   @Post()
-  createProduct(@Body() product: ProductDto, @Res() res: Response): Response<Product> {
+  createProduct(@Body() product: ProductDto, @Res() res: Response): ResponseType<Product> {
     try {
       return res.json(new ResponseData(this.productService.createProduct(product), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
@@ -30,7 +30,7 @@ export class ProductController {
   }
 
   @Get('/:id')
-  detailProduct(@Param('id') id: number, @Res() res: Response): Response<Product> {
+  detailProduct(@Param('id') id: number, @Res() res: Response): ResponseType<Product> {
     try {
       return res.json(new ResponseData(this.productService.findById(id), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
@@ -39,7 +39,7 @@ export class ProductController {
   }
 
   @Put('/:id')
-  updateProduct(@Param('id') id: number, @Body() product: ProductDto, @Res() res: Response): Response<Product> {
+  updateProduct(@Param('id') id: number, @Body() product: ProductDto, @Res() res: Response): ResponseType<Product> {
     try {
       return res.json(new ResponseData(this.productService.updateProduct(id, product), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
@@ -48,7 +48,7 @@ export class ProductController {
   }
 
   @Delete('/:id')
-  deleteProduct(@Param('id') id: number, @Res() res: Response): Response<Product> {
+  deleteProduct(@Param('id') id: number, @Res() res: Response): ResponseType<Product> {
     try {
       return res.json(new ResponseData(this.productService.deleteProduct(id), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {

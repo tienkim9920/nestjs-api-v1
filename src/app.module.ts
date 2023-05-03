@@ -9,6 +9,7 @@ import { CategoriesEntity } from './entities/categories.entity';
 import { AccountsEntity } from './entities/accounts.entity';
 import { CategoryModule } from './modules/categories/category.module';
 import { CarModule } from './modules/cars/car.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { CarModule } from './modules/cars/car.module';
     ProductModule,
     CategoryModule,
     CarModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

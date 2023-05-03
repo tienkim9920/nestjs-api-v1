@@ -21,7 +21,7 @@ export class CategoryController {
   }
 
   @Get('/:id')
-  async detail(@Param('id') id: number, @Res() res: Response): Promise<Response<Category>> {
+  async detail(@Param('id') id: number, @Res() res: Response): Promise<ResponseType<Category>> {
     try {
       return res.json(new ResponseData(await this.categoryService.findById(id), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
@@ -30,7 +30,7 @@ export class CategoryController {
   }
 
   @Post()
-  async create(@Body() category: CategoryDto, @Res() res: Response): Promise<Response<Category>> {
+  async create(@Body() category: CategoryDto, @Res() res: Response): Promise<ResponseType<Category>> {
     try {
       return res.json(new ResponseData(await this.categoryService.create(category), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
@@ -39,7 +39,7 @@ export class CategoryController {
   }
 
   @Put('/:id')
-  async update(@Param('id') id: number, @Body() category: CategoryDto, @Res() res: Response): Promise<Response<Category>> {
+  async update(@Param('id') id: number, @Body() category: CategoryDto, @Res() res: Response): Promise<ResponseType<Category>> {
     try {
       return res.json(new ResponseData(await this.categoryService.update(id, category), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {

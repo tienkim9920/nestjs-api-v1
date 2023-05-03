@@ -21,7 +21,7 @@ export class CarController {
   }
 
   @Get('/:id')
-  async detail(@Param('id') id: number, @Res() res: Response): Promise<Response<Car>> {
+  async detail(@Param('id') id: number, @Res() res: Response): Promise<ResponseType<Car>> {
     try {
       return res.json(new ResponseData(await this.carService.findById(id), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
@@ -30,7 +30,7 @@ export class CarController {
   }
 
   @Post()
-  async create(@Body() car: CarDto, @Res() res: Response): Promise<Response<Car>> {
+  async create(@Body() car: CarDto, @Res() res: Response): Promise<ResponseType<Car>> {
     try {
       return res.json(new ResponseData(await this.carService.create(car), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
@@ -39,7 +39,7 @@ export class CarController {
   }
 
   @Put('/:id')
-  async update(@Param('id') id: number, @Body() car: CarDto, @Res() res: Response): Promise<Response<Car>> {
+  async update(@Param('id') id: number, @Body() car: CarDto, @Res() res: Response): Promise<ResponseType<Car>> {
     try {
       return res.json(new ResponseData(await this.carService.update(id, car), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
@@ -62,7 +62,7 @@ export class CarController {
   }
 
   @Get('/relations/:id')
-  async find(@Param('id') id: number, @Res() res: Response): Promise<Response<Car>> {
+  async find(@Param('id') id: number, @Res() res: Response): Promise<ResponseType<Car>> {
     try {
       return res.json(new ResponseData(await this.carService.findRelationById(id), ServerStatus.OK, ServerMessage.OK));
     } catch (error) {
