@@ -6,7 +6,9 @@ import { AuthService } from './auth.service';
 import { AuthRepository } from './auth.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AccountsEntity])],
+  imports: [
+    TypeOrmModule.forFeature([AccountsEntity])
+  ],
   controllers: [AuthController],
   providers: [
     AuthService,

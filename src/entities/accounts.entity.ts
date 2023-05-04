@@ -1,3 +1,4 @@
+import { Role } from 'src/constant/enum';
 import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 
 @Entity('accounts')
@@ -13,4 +14,6 @@ export class AccountsEntity extends BaseEntity {
 
   @Column()
   permission: string;
+
+  public roles: Role[]
 }

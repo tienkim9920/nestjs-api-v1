@@ -2,16 +2,18 @@ import { Controller, Get, Post, Put, Delete, Res, Body, Param } from '@nestjs/co
 import { Response } from 'express';
 import { ResponseData } from 'src/services/response.service';
 import { ResponseType } from 'src/constant/type';
-import { ServerMessage, ServerStatus } from 'src/constant/enum';
+import { Role, ServerMessage, ServerStatus } from 'src/constant/enum';
 import { Car } from 'src/models/car.model';
 import { CarService } from './car.service';
 import { CarDto } from 'src/dto/car.dto';
+import { Roles } from 'src/constant/decorator';
 
 @Controller('cars')
 export class CarController {
   constructor(protected readonly carService: CarService) { }
 
   @Get('')
+  @Roles(Role.Admin)
   async list(@Res() res: Response): Promise<ResponseType<Car>> {
     try {
       return res.json(new ResponseData(await this.carService.findAll(), ServerStatus.OK, ServerMessage.OK));

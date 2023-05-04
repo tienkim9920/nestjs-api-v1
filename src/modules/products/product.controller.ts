@@ -6,11 +6,13 @@ import { ResponseType } from 'src/constant/type';
 import { Product } from '../../models/product.model';
 import { ProductDto } from 'src/dto/product.dto';
 import { ServerMessage, ServerStatus } from 'src/constant/enum';
+import { Public } from 'src/constant/decorator';
 
 @Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
+  @Public()
   @Get()
   getProducts(@Res() res: Response): ResponseType<Product> {
     try {
@@ -20,6 +22,7 @@ export class ProductController {
     }
   }
 
+  @Public()
   @Post()
   createProduct(@Body() product: ProductDto, @Res() res: Response): ResponseType<Product> {
     try {
@@ -29,6 +32,7 @@ export class ProductController {
     }
   }
 
+  @Public()
   @Get('/:id')
   detailProduct(@Param('id') id: number, @Res() res: Response): ResponseType<Product> {
     try {
@@ -38,6 +42,7 @@ export class ProductController {
     }
   }
 
+  @Public()
   @Put('/:id')
   updateProduct(@Param('id') id: number, @Body() product: ProductDto, @Res() res: Response): ResponseType<Product> {
     try {
@@ -47,6 +52,7 @@ export class ProductController {
     }
   }
 
+  @Public()
   @Delete('/:id')
   deleteProduct(@Param('id') id: number, @Res() res: Response): ResponseType<Product> {
     try {
