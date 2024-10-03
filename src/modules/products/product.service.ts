@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { ProductDto } from 'src/dto/product.dto';
 import { IProductRepository } from 'src/interfaces/IProductRepository.interface';
 import { Product } from '../../models/product.model';
+import { MetaParams } from 'src/constant/type';
 
 @Injectable()
 export class ProductService {
@@ -26,5 +27,9 @@ export class ProductService {
 
     deleteProduct(id: number): boolean {
         return this.productRepository.delete(id);
+    }
+
+    findProductHome(meta: MetaParams): Product[] {
+        return this.productRepository.findProductHome(meta);
     }
 }
