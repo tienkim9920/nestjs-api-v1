@@ -6,30 +6,32 @@ import { MetaParams } from 'src/constant/type';
 
 @Injectable()
 export class ProductService {
+  constructor(
+    @Inject('IProductRepository')
+    private readonly productRepository: IProductRepository,
+  ) {}
 
-    constructor(@Inject('IProductRepository') private readonly productRepository: IProductRepository) {}
+  findAll(): Product[] {
+    return this.productRepository.findAll();
+  }
 
-    findAll(): Product[] {
-        return this.productRepository.findAll();
-    }
+  createProduct(product: ProductDto): Product {
+    return this.productRepository.create(product);
+  }
 
-    createProduct(product: ProductDto): Product {
-        return this.productRepository.create(product);
-    }
+  findById(id: number): Product {
+    return this.productRepository.findById(id);
+  }
 
-    findById(id: number): Product {
-        return this.productRepository.findById(id);
-    }
+  updateProduct(id: number, product: ProductDto): Product {
+    return this.productRepository.update(id, product);
+  }
 
-    updateProduct(id: number, product: ProductDto): Product {
-        return this.productRepository.update(id, product);
-    }
+  deleteProduct(id: number): boolean {
+    return this.productRepository.delete(id);
+  }
 
-    deleteProduct(id: number): boolean {
-        return this.productRepository.delete(id);
-    }
-
-    findProductHome(meta: MetaParams): Product[] {
-        return this.productRepository.findProductHome(meta);
-    }
+  findProductHome(meta: MetaParams): Product[] {
+    return this.productRepository.findProductHome(meta);
+  }
 }
