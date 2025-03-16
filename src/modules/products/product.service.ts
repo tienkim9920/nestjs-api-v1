@@ -1,8 +1,9 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, ConsoleLogger } from '@nestjs/common';
 import { ProductDto } from 'src/dto/product.dto';
 import { IProductRepository } from 'src/interfaces/IProductRepository.interface';
 import { Product } from '../../models/product.model';
 import { MetaParams } from 'src/constant/type';
+import { Cron, CronExpression } from '@nestjs/schedule';
 
 @Injectable()
 export class ProductService {
@@ -10,6 +11,11 @@ export class ProductService {
     @Inject('IProductRepository')
     private readonly productRepository: IProductRepository,
   ) {}
+
+  @Cron('0 0 * * *')
+  syncDataFromCrmToDatabase() {
+    console.log('Cron job chay moi 5s:', new Date().toISOString());
+  }
 
   findAll(): Product[] {
     return this.productRepository.findAll();
